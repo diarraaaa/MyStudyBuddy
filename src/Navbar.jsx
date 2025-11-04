@@ -5,8 +5,9 @@ function Navbar() {
         <nav className="navbar">
             <ul>
                 <li>Home</li>
-                <li>Services</li>
-                <li>About</li>
+                <li>Summary</li>
+                <li>Flashcards</li>
+                <li>Quizzes</li>
                 <li>Contact</li>
             </ul>
         </nav>

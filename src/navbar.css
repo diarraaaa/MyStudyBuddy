@@ -1,35 +1,35 @@
 .navbar {
-  position: sticky;  /* or fixed */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 50;
-  background-color: white;
+  background: radial-gradient(circle, #ebb8f8 50%, #ffffff 100%);
   display: flex;
   justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
-
 
 .navbar ul {
   list-style: none; /* remove bullets */
   display: flex;
-  gap: 2rem; /* space between links */
+  gap: 3rem; /* space between links */
   margin: 0;
   padding: 0;
+  font-size: 20px;
   
 }
 
 .navbar ul li{
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-decoration: none;
   font-weight: bold;
   transition: color 0.2s;
 }
 
 .navbar ul li:hover{
-  color: #191a66; /* yellow on hover */
+  color: #6f1985; /* yellow on hover */
+  cursor:default;
 }
