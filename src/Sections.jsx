@@ -31,5 +31,73 @@ function Section2(){
         </div>
     )
 }
-        
-export {Section1,Section2};
+function Section3(){
+    return(
+        <div className="section3">
+            <h1>How it works</h1>
+            <p>MyStudyBuddy uses advanced algorithms to analyze your study materials and generate useful study aids.</p>
+            <div className="steps">
+                <ul>
+                    <li>
+                    <h1>📤 Upload</h1><p>Upload your study materials.</p></li>
+                    <li><h1>🧠 Analyze</h1><p>Let MyStudyBuddy analyze the content.</p></li>
+                    <li><h1>📩 Receive</h1><p>Receive personalized study aids.</p></li>
+                    <li><h1>🔍 Explore</h1><p>Discover new study resources.</p></li>
+                </ul>
+            </div>
+        </div>
+    )
+};
+function Section4(){
+    return (
+        <div class="section4">
+            <div class="section4-badge">✨ Transform Your Learning Experience</div>
+            
+            <h2>
+                Ready to boost your
+                <span class="section4-highlight">study efficiency?</span>
+            </h2>
+            
+            <p>
+                Upload your materials, generate AI-powered summaries, and start learning smarter today. 
+                Join thousands of students already crushing their goals.
+            </p>
+            
+            <div class="section4-buttons">
+                <a href="/signup" class="getstartedbtn">
+                    Get Started Free
+                    <span class="arrow-icon">→</span>
+                </a>
+                
+                <a href="/demo" class="section4-secondary-btn">
+                    <span>▶</span>
+                    Watch Demo
+                </a>
+            </div>
+            
+            <div class="section4-trust">
+                <div class="trust-item">
+                    <svg class="check-icon" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span>No credit card required</span>
+                </div>
+                <div class="trust-item">
+                    <svg class="check-icon" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Free forever plan</span>
+                </div>
+            </div>
+        </div>
+    )
+}
+function Footer(){
+    return(
+        <div className="footer bg-gray-900 text-white py-4 text-center">
+            <p>© 2025 MyStudyBuddy. All rights reserved.</p>
+        </div>
+
+    )
+}
+export {Section1,Section2,Section3,Section4,Footer};

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './Navbar'
-import {Section1,Section2 }from './Sections'
+import Home from './Home'
+import { SignIn, SignUp } from './auth'
 
 function App() {
   const [theme, setTheme] = useState('light')
@@ -20,9 +19,8 @@ function App() {
 
   return (
     <>
-      <Navbar changetheme={changeTheme}/>
-      <Section1 banner={banner}/>
-      <Section2/>
+      <Navbar theme={theme} changetheme={changeTheme}/>
+      <Home banner={banner}/>
     </>
   )
 }
