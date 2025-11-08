@@ -115,4 +115,27 @@ export async function generateFlashcards(text) {
         return 'Error generating flashcards. Please try again.';
     }
 }
+export async function reformulateText(text) {
+    try {
+        const chatCompletion = await groq.chat.completions.create({
+        "messages": [
+            {
+            "role": "user",
+            "content": "You are an expert text reformulator.You reformulate the given text while preserving its original meaning. Here is the text to reformulate:\n\n" + text
+            }
+        ],
+        "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "temperature": 1,
+        "max_completion_tokens": 1024,
+        "top_p": 1,
+        "stream": false,
+        "stop": null
+        });
+
+        return chatCompletion.choices[0]?.message?.content || 'No reformulated text generated. Try again.';
+    } catch (error) {
+        console.error("Error reformulating text:", error);
+        return 'Error generating reformulated text. Please try again.';
+    }
+}
 export default groq;

@@ -3,12 +3,11 @@ import { useState } from 'react';
 import '../profile/profile.css';
 import imagetoText from '../services/groq';
 import {summarizeText} from '../services/groq';
-import {generateQuizQuestions} from '../services/groq';
-import {generateFlashcards} from '../services/groq';
-
+import { reformulateText } from '../services/groq';
 function Try() {
     const [inputType, setInputType] = useState('file'); 
     const [summary,setsummary]=useState('')
+    const [reformulatedtext,setreformulatedtext]=useState('')
     const [loading,setloading]=useState(false)
     const [error,seterror]=useState(null)
     const generatematerial=async()=>{
@@ -18,12 +17,17 @@ function Try() {
                 const texttouse=document.getElementById('content-text').value;
                 const tasktodo=document.querySelector('input[name="generation-type"]:checked').value;
                     if(tasktodo==='summary'){
-                    const result=await summarizeText(texttouse);
-                    setsummary(result)
-                    console.log(summary)
-                }
+                     const result=await summarizeText(texttouse);
+                     setsummary(result)
+                     setreformulatedtext(null)
+                    }
+                    else if(tasktodo==='reformulate'){
+                        const result=await reformulateText(texttouse);
+                        setreformulatedtext(result);
+                        setsummary(null);
+                    }
             }
-        }catch(error){
+        }catch(error){ 
             console.error("Error generating study material:", error);
             seterror('Error generating study material. Please try again.');
         }finally{
@@ -98,6 +102,10 @@ function Try() {
                                     <input type="radio" name="generation-type" value="articles" />
                                     <span>📄 Article Recommendations</span>
                                 </label>
+                                <label className='checkbox-label'>
+                                    <input type="radio" name="generation-type" value="reformulate" />
+                                    <span>🔄 Reformulate</span>
+                                </label>
                             </div>
                         </div>
                         <button className="btn-primary" onClick={generatematerial}>Generate Study Materials</button>
@@ -118,9 +126,11 @@ function Try() {
                     </div>
                 </section>
                 <section className="profile-section">
-                    <h2>Generated Summary</h2>
+                    <h2>Generated Material</h2>
                     <div className="materials-list">
-                        {loading ? <p style={{ color: 'blue' }}>Generating summary...</p> : <p>{summary}</p>}
+                        {loading ? <p style={{ color: 'blue' }}>Generating material...</p>:null}
+                        {summary ? <p>{summary}</p> : null}
+                        {reformulatedtext ? <p>{reformulatedtext}</p> : null}
                         {error && <p className="error-text">{error}</p>}
                     </div>
                 </section>

@@ -14,18 +14,15 @@ function Section1({banner}){
     )
 }
 function Section2(){
-    function handleclick(){
-        alert("This feature is coming soon!");
-    }
     return(
         <div className="section2">
             <h1>Why use <b style={{fontWeight:"bolder",fontSize:"50px"}}>MyStudyBuddy?</b></h1>
             <div className="features">
                 <ul className="featurelist">
-                    <li><h1><FaFileAlt /> Summarization</h1> <p>Automatically generate summaries from your notes.</p><button onClick={handleclick}>Try it out</button></li>
-                    <li><h1><FaClipboard /> Flashcards</h1> <p>Create flashcards from your notes for effective memorization.</p><button onClick={handleclick}>Try it out</button></li>
-                    <li><h1><FaQuestionCircle /> Quizzes</h1> <p>Test your knowledge with quizzes based on your study material.</p><button onClick={handleclick}>Try it out</button></li>
-                    <li><h1><FaYoutube /> Videos and articles </h1> <p>Personalized recommendations for videos and articles.</p><button onClick={handleclick}>Try it out</button></li>
+                    <li><h1><FaFileAlt /> Summarization</h1> <p>Automatically generate summaries from your notes.</p></li>
+                    <li><h1><FaClipboard /> Flashcards</h1> <p>Create flashcards from your notes for effective memorization.</p></li>
+                    <li><h1><FaQuestionCircle /> Quizzes</h1> <p>Test your knowledge with quizzes based on your study material.</p></li>
+                    <li><h1><FaYoutube /> Videos and articles </h1> <p>Personalized recommendations for videos and articles.</p></li>
                 </ul>
             </div>
         </div>
