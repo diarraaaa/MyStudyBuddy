@@ -2,13 +2,13 @@
   /* Light theme colors */
   --bg-color: #ffffff;
   --text-color: #2d3748;
-  --highlight-color: #dd75f7;
+  --highlight-color: #14247c;
   --card-bg: #ffffff;
-  --card-shadow: rgba(221, 117, 247, 0.15);
+  --card-shadow: rgba(11, 19, 92, 0.281);
   --input-border: #e2e8f0;
-  --input-focus: #dd75f7;
-  --button-bg: #dd75f7;
-  --button-hover-bg: #813f92;
+  --input-focus: #183e91;
+  --button-bg: #1e4496;
+  --button-hover-bg: #1a18be;
   --error-color: #f56565;
 }
 
@@ -16,13 +16,13 @@
 [data-theme="dark"] {
   --bg-color: #000000;
   --text-color: #e2e8f0;
-  --highlight-color: #ff75c1;
+  --highlight-color: #1a1de9;
   --card-bg: #1a1a1a;
-  --card-shadow: rgba(255, 117, 193, 0.2);
+  --card-shadow: rgba(21, 47, 119, 0.788);
   --input-border: #2d3748;
-  --input-focus: #ff75c1;
-  --button-bg: #ff75c1;
-  --button-hover-bg: #813f92;
+  --input-focus: #122694;
+  --button-bg: #252685;
+  --button-hover-bg: #191b8f;
 }
 
 /* Container for centering - works for both signin and signup */
@@ -135,14 +135,14 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(221, 117, 247, 0.3);
+  box-shadow: 0 4px 15px rgba(20, 46, 85, 0.3);
 }
 
 .signin-form button:hover,
 .signup-form button:hover {
   background: linear-gradient(135deg, var(--button-hover-bg), var(--button-bg));
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(221, 117, 247, 0.4);
+  box-shadow: 0 6px 20px rgba(27, 18, 104, 0.342);
 }
 
 .signin-form button:active,

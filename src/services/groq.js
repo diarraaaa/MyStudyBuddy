@@ -21,7 +21,7 @@ export async function imagetoText(imageUrl) {
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": IMAGE_DATA_URL
+                                "url": imageUrl
                             }
                         }
                     ]
@@ -31,7 +31,7 @@ export async function imagetoText(imageUrl) {
             "temperature": 1,
             "max_completion_tokens": 1024,
             "top_p": 1,
-            "stream": true,
+            "stream": false,
             "stop": null
         });
         return response.choices[0]?.message?.content || 'No text extracted. Try again.';

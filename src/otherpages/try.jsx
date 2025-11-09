@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import '../profile/profile.css';
 import ReactMarkdown from 'react-markdown'
-import imagetoText from '../services/groq';
+import {imagetoText} from '../services/groq';
 import {summarizeText} from '../services/groq';
 import { reformulateText } from '../services/groq';
 import {explainText} from '../services/groq'
@@ -55,11 +55,9 @@ function Try() {
                 <h2>Hi Guest!</h2>
                 <p>Generate summaries, quizzes, and flashcards from your content</p>
             </div>
-
             <div className="profile-content">
                 <section className="profile-section">
                     <h2>Create Study Materials</h2>
-                    
                     <div className="input-type-selector">
                         <button 
                             className={`type-btn ${inputType === 'file' ? 'active' : ''}`}
@@ -75,34 +73,31 @@ function Try() {
                         </button>
                     </div>
 
-                    <div className="upload-form">
-                        <div className="form-group">
+                    <div className="upload-form">      
+                        {inputType === 'file' ? 
+                        (
+                            <div className="form-group" style={{fontWeight:"bold",color:"red"}}>
+                                Sign in to use file upload feature.
+                            </div>
+                        ) : (
+                            <>
+                            <div className="form-group">
                             <label htmlFor="content-title">Title:</label>
                             <input 
                                 type="text" 
                                 id="content-title"
                                 placeholder="Enter a title for your study material"
                             />
-                        </div>       
-                        {inputType === 'file' ? (
-                            <div className="form-group">
-                                <label htmlFor="content-file">Upload File:</label>
-                                <input 
-                                    type="file" 
-                                    id="content-file"
-                                    accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
-                                />
-                                <small className="helper-text">Supported formats: PDF, DOC, DOCX, TXT, PNG, JPG, JPEG</small>
-                            </div>
-                        ) : (
+                            </div> 
                             <div className="form-group">
                                 <label htmlFor="content-text">Paste Your Text:</label>
                                 <textarea 
                                     id="content-text"
                                     rows="8"
                                     placeholder="Paste your course content, notes, or any text you want to study..."
-                                />
+                            />
                             </div>
+                            </>
                         )}
                         <div className="form-group">
                             <label>Generate:</label>
