@@ -138,4 +138,27 @@ export async function reformulateText(text) {
         return 'Error generating reformulated text. Please try again.';
     }
 }
+export async function explainText(text) {
+    try {
+        const chatCompletion = await groq.chat.completions.create({
+        "messages": [
+            {
+            "role": "user",
+            "content": "You are an study assistant.You have to explain the given text while giving real examples.Return the explanation in a clear and concise manner with good formatting(bullet points, headings, etc.). Here is the text to explain:\n\n" + text
+            }
+        ],
+        "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "temperature": 1,
+        "max_completion_tokens": 1024,
+        "top_p": 1,
+        "stream": false,
+        "stop": null
+        });
+
+        return chatCompletion.choices[0]?.message?.content || 'No reformulated text generated. Try again.';
+    } catch (error) {
+        console.error("Error reformulating text:", error);
+        return 'Error generating reformulated text. Please try again.';
+    }
+}
 export default groq;

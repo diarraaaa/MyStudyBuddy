@@ -1,13 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
 import '../profile/profile.css';
+import ReactMarkdown from 'react-markdown'
 import imagetoText from '../services/groq';
 import {summarizeText} from '../services/groq';
 import { reformulateText } from '../services/groq';
+import {explainText} from '../services/groq'
 function Try() {
     const [inputType, setInputType] = useState('file'); 
     const [summary,setsummary]=useState('')
     const [reformulatedtext,setreformulatedtext]=useState('')
+    const [explanation,setexplanation]=useState('')
     const [loading,setloading]=useState(false)
     const [error,seterror]=useState(null)
     const generatematerial=async()=>{
@@ -17,14 +20,24 @@ function Try() {
                 const texttouse=document.getElementById('content-text').value;
                 const tasktodo=document.querySelector('input[name="generation-type"]:checked').value;
                     if(tasktodo==='summary'){
-                     const result=await summarizeText(texttouse);
-                     setsummary(result)
-                     setreformulatedtext(null)
+                        setsummary(null);
+                        const result=await summarizeText(texttouse);
+                        setsummary(result)
+                        setreformulatedtext(null)
+                        setexplanation(null);
                     }
                     else if(tasktodo==='reformulate'){
+                        setreformulatedtext(null);
                         const result=await reformulateText(texttouse);
-                        setreformulatedtext(result);
+                        setreformulatedtext (result);
                         setsummary(null);
+                        setexplanation(null);
+                    }else if(tasktodo==='explanation'){
+                        setexplanation(null);
+                        const result= await explainText(texttouse)
+                        setexplanation(result);
+                        setsummary(null);
+                        setreformulatedtext(null);
                     }
             }
         }catch(error){ 
@@ -94,6 +107,10 @@ function Try() {
                         <div className="form-group">
                             <label>Generate:</label>
                             <div className="checkbox-group">
+                                 <label className="checkbox-label">
+                                    <input type="radio" name="generation-type" value="explanation" />
+                                    <span>❓ Explanation</span>
+                                 </label>
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="summary" />
                                     <span>📝 Summary</span>
@@ -128,16 +145,17 @@ function Try() {
                 <section className="profile-section">
                     <h2>Generated Material</h2>
                     <div className="materials-list">
-                        {loading ? <p style={{ color: 'blue' }}>Generating material...</p>:null}
-                        {summary ? <p>{summary}</p> : null}
-                        {reformulatedtext ? <p>{reformulatedtext}</p> : null}
-                        {error && <p className="error-text">{error}</p>}
+                       {loading ? <p style={{ color: 'blue' }}>Generating material...</p>:null}    
+                       {summary ? <ReactMarkdown>{summary}</ReactMarkdown> : null}
+                       {reformulatedtext ? <ReactMarkdown>{reformulatedtext}</ReactMarkdown> : null}
+                       {explanation ? <ReactMarkdown>{explanation}</ReactMarkdown> : null}
+                       {error && <p className="error-text">{error}</p>}
                     </div>
                 </section>
                 <section className="profile-section">
                     <h2>My Study Materials</h2>
                     <div className="materials-list">
-                        <p>You are using the free version of My Study Buddy. Please sign up for a premium account to access your past study materials and more features!</p>
+                        <p style={{ color: 'red' ,fontWeight: 'bold'}}>You are using the free version of My Study Buddy. Please sign up for a premium account to access your past study materials and more features!</p>
                     </div>
                 </section>
             </div>

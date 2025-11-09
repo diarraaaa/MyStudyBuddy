@@ -30,11 +30,9 @@ function Profile() {
             </div>
 
             <div className="profile-content">
-                {/* Upload/Input Section */}
                 <section className="profile-section">
                     <h2>Create Study Materials</h2>
                     
-                    {/* Input Type Selector */}
                     <div className="input-type-selector">
                         <button 
                             className={`type-btn ${inputType === 'file' ? 'active' : ''}`}
