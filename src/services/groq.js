@@ -5,6 +5,7 @@ const groq = new Groq({
   apiKey: import.meta.env.VITE_GROQ_API_KEY,
   dangerouslyAllowBrowser: true,
 });
+console.log("API Key loaded:", import.meta.env.VITE_GROQ_API_KEY ? "✅ Yes" : "❌ No");
 { //We create a function to extract text from an image or a file.
 }
 export async function imagetoText(imageUrl) {

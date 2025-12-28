@@ -1,76 +1,71 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import '../profile/profile.css';
-import ReactMarkdown from 'react-markdown'
-import {imagetoText} from '../services/groq';
-import {summarizeText} from '../services/groq';
-import { reformulateText } from '../services/groq';
-import {generateArticles} from '../services/groq'
-import {explainText} from '../services/groq'
+import ReactMarkdown from 'react-markdown';
+import { summarizeText, reformulateText, generateArticles, explainText } from '../services/groq';
+
 function Try() {
     const [inputType, setInputType] = useState('file'); 
-    const [summary,setsummary]=useState('')
-    const [reformulatedtext,setreformulatedtext]=useState('')
-    const [explanation,setexplanation]=useState('')
-    const [articles,setarticles]=useState('')
-    const [loading,setloading]=useState(false)
-    const [error,seterror]=useState(null)
-    const [tasktodo,settasktodo]=useState('')
-    const [title,settitle]=useState('')
-    const generatematerial=async()=>{
-        try{
-            setloading(true)
-            if(inputType==='text'){
-                const texttouse=document.getElementById('content-text').value;
-                settasktodo(document.querySelector('input[name="generation-type"]:checked').value);
-                    if(tasktodo==='summary'){
-                        seterror(null)
-                        setsummary(null);
-                        const result=await summarizeText(texttouse);
-                        setsummary(result)
-                        setreformulatedtext(null)
-                        setexplanation(null);
-                        setarticles(null);
-                        settasktodo('Summary')
-                    }
-                    else if(tasktodo==='reformulate'){
-                        seterror(null)
-                        setreformulatedtext(null);
-                        const result=await reformulateText(texttouse);
-                        setreformulatedtext (result);
-                        setsummary(null);
-                        setexplanation(null);
-                        setarticles(null);
-                        settasktodo('Reformulate')
-    
-                    }else if(tasktodo==='explanation'){
-                        seterror(null)
-                        setexplanation(null);
-                        const result= await explainText(texttouse)
-                        setexplanation(result);
-                        setsummary(null);
-                        setreformulatedtext(null);
-                        setarticles(null);
-                        settasktodo('Explanation')
-                    }else if (tasktodo==='articles'){
-                        seterror(null)
-                        setarticles(null)
-                        const result=await generateArticles (texttouse)
-                        setarticles(result)
-                        setsummary(null);
-                        setreformulatedtext(null);
-                        setexplanation(null);
-                        settasktodo('Article Recommendations')
-                    }
+    const [summary, setSummary] = useState('');
+    const [reformulatedtext, setReformulatedtext] = useState('');
+    const [explanation, setExplanation] = useState('');
+    const [articles, setArticles] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [tasktodo, setTasktodo] = useState('');
+    const [title, setTitle] = useState('');
+
+    const generatematerial = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            
+            if (inputType === 'text') {
+                const texttouse = document.getElementById('content-text').value;
+                const selectedTask = document.querySelector('input[name="generation-type"]:checked')?.value;
+                
+                if (!texttouse.trim()) {
+                    setError('Please enter some text to generate materials.');
+                    return;
+                }
+                
+                if (!selectedTask) {
+                    setError('Please select a generation type.');
+                    return;
+                }
+
+                // Reset all states
+                setSummary(null);
+                setReformulatedtext(null);
+                setExplanation(null);
+                setArticles(null);
+
+                if (selectedTask === 'summary') {
+                    const result = await summarizeText(texttouse);
+                    setSummary(result);
+                    setTasktodo('Summary');
+                } else if (selectedTask === 'reformulate') {
+                    const result = await reformulateText(texttouse);
+                    setReformulatedtext(result);
+                    setTasktodo('Reformulate');
+                } else if (selectedTask === 'explanation') {
+                    const result = await explainText(texttouse);
+                    setExplanation(result);
+                    setTasktodo('Explanation');
+                } else if (selectedTask === 'articles') {
+                    const result = await generateArticles(texttouse);
+                    setArticles(result);
+                    setTasktodo('Article Recommendations');
+                }
             }
-        }catch(error){ 
+        } catch (error) { 
             console.error("Error generating study material:", error);
-            seterror('Error generating study material. Please try again.');
-        }finally{
-            setloading(false)
-            console.log("Task completed")
+            setError('Error generating study material. Please try again.');
+        } finally {
+            setLoading(false);
+            console.log("Task completed");
         }
-    }
+    };
+
     return (
         <div className="profile-container">
             <div className="profile-header">
@@ -97,54 +92,56 @@ function Try() {
                     </div>
 
                     <div className="upload-form">      
-                        {inputType === 'file' ? 
-                        (
-                            <div className="form-group" style={{fontWeight:"bold",color:"red"}}>
-                                🔒 Sign in to use file upload feature 🔒.
+                        {inputType === 'file' ? (
+                            <div className="form-group" style={{fontWeight: "bold", color: "red"}}>
+                                🔒 Sign in to use file upload feature 🔒
                             </div>
                         ) : (
                             <>
-                            <div className="form-group">
-                            <label htmlFor="content-title">Title:</label>
-                            <input 
-                                type="text" 
-                                id="content-title"
-                                placeholder="Enter a title for your study material"
-                                onChange={(e)=>settitle(e.target.value)}
-                            />
-                            </div> 
-                            <div className="form-group">
-                                <label htmlFor="content-text">Paste Your Text:</label>
-                                <textarea 
-                                    id="content-text"
-                                    rows="8"
-                                    placeholder="Paste your course content, notes, or any text you want to study..."
-                            />
-                            </div>
+                                <div className="form-group">
+                                    <label htmlFor="content-title">Title:</label>
+                                    <input 
+                                        type="text" 
+                                        id="content-title"
+                                        placeholder="Enter a title for your study material"
+                                        onChange={(e) => setTitle(e.target.value)}
+                                        value={title}
+                                    />
+                                </div> 
+                                <div className="form-group">
+                                    <label htmlFor="content-text">Paste Your Text:</label>
+                                    <textarea 
+                                        id="content-text"
+                                        rows="8"
+                                        placeholder="Paste your course content, notes, or any text you want to study..."
+                                    />
+                                </div>
                             </>
                         )}
                         <div className="form-group">
                             <label>Generate:</label>
                             <div className="checkbox-group">
-                                 <label className="checkbox-label">
+                                <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="explanation" />
                                     <span>❓ Explanation</span>
-                                 </label>
+                                </label>
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="summary" />
                                     <span>📝 Summary</span>
                                 </label>
-                                <label className='checkbox-label'>
+                                <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="articles" />
                                     <span>📄 Article Recommendations</span>
                                 </label>
-                                <label className='checkbox-label'>
+                                <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="reformulate" />
                                     <span>🔄 Reformulate</span>
                                 </label>
                             </div>
                         </div>
-                        <button className="btn-primary" onClick={generatematerial}>Generate Study Materials</button>
+                        <button className="btn-primary" onClick={generatematerial}>
+                            Generate Study Materials
+                        </button>
                         <div className="form-group">
                             <label>Premium Features (Sign up required):</label>
                             <div className="checkbox-group premium-features">
@@ -162,25 +159,28 @@ function Try() {
                     </div>
                 </section>
                 <section className="profile-section">
-                    <h2>Generated Material:{tasktodo ?<span >{tasktodo}</span>:null}</h2>
+                    <h2>Generated Material: {tasktodo ? <span>{tasktodo}</span> : null}</h2>
                     <div className="materials-list">
-                       {title ? <h2>{title}</h2> : null}
-                       {loading ? <p style={{ color: 'blue' }}>Generating material...</p>:null}    
-                       {summary ? <ReactMarkdown>{summary}</ReactMarkdown> : null}
-                       {reformulatedtext ? <ReactMarkdown>{reformulatedtext}</ReactMarkdown> : null}
-                       {explanation ? <ReactMarkdown>{explanation}</ReactMarkdown> : null}
-                       {articles ? <ReactMarkdown>{articles}</ReactMarkdown> : null}
+                       {title && <h2>{title}</h2>}
+                       {loading && <p style={{ color: 'blue' }}>Generating material...</p>}    
+                       {summary && <ReactMarkdown>{summary}</ReactMarkdown>}
+                       {reformulatedtext && <ReactMarkdown>{reformulatedtext}</ReactMarkdown>}
+                       {explanation && <ReactMarkdown>{explanation}</ReactMarkdown>}
+                       {articles && <ReactMarkdown>{articles}</ReactMarkdown>}
                        {error && <p className="error-text">{error}</p>}
                     </div>
                 </section>
                 <section className="profile-section">
                     <h2>My Study Materials</h2>
                     <div className="materials-list">
-                        <p style={{ color: 'red' ,fontWeight: 'bold'}}>You are using the free version of My Study Buddy. Please sign up for a premium account to access your past study materials and more features!</p>
+                        <p style={{ color: 'red', fontWeight: 'bold' }}>
+                            You are using the free version of My Study Buddy. Please sign up for a premium account to access your past study materials and more features!
+                        </p>
                     </div>
                 </section>
             </div>
         </div>
     );
 }
+
 export default Try;
