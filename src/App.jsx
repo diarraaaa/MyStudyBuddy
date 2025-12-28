@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Navbar from './Navbar'
 import Home from './homepage/Home'
@@ -8,21 +8,32 @@ import SignIn from './auth/signin'
 import Profile from './profile/profile'
 import Try from './otherpages/try'
 import AuthCallback from './otherpages/AuthCallBack'
-
+import { supabase } from './supabase'
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [theme, setTheme] = useState('light')
   const [banner, setBanner] = useState('banner.png')
 
-  useEffect(()=>{
-    document.documentElement.setAttribute("data-theme",theme);
-  },[theme])
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme])
 
-  function changeTheme(){
-    setTheme(theme==="light"?"dark":"light");
-    setBanner(banner==="banner.png"?"bannerblack.png":"banner.png")
+  function changeTheme() {
+    setTheme(theme === "light" ? "dark" : "light");
+    setBanner(banner === "banner.png" ? "bannerblack.png" : "banner.png")
   }
-  const navigate = useNavigate();
+
+  return (
+    <Router>
+      <AppContent theme={theme} changetheme={changeTheme} banner={banner} />
+    </Router>
+  )
+}
+
+// Separate component that uses useNavigate INSIDE Router
+function AppContent({ theme, changetheme, banner }) {
+  const navigate = useNavigate(); // ← Now this works!
 
   useEffect(() => {
     // Handle email confirmation
@@ -45,17 +56,17 @@ function App() {
   }, [navigate]);
 
   return (
-    <Router>
-      <Navbar theme={theme} changetheme={changeTheme}/>
+    <>
+      <Navbar theme={theme} changetheme={changetheme} />
       <Routes>
-        <Route path="/" element={<Home banner={banner}/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/signin" element={<SignIn/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-        <Route path="/try" element={<Try/>}/>
+        <Route path="/" element={<Home banner={banner} />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/try" element={<Try />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
       </Routes>
-    </Router>
+    </>
   )
 }
 
