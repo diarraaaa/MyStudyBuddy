@@ -7,6 +7,8 @@ import SignUp from './auth/signup'
 import SignIn from './auth/signin'
 import Profile from './profile/profile'
 import Try from './otherpages/try'
+import AuthCallback from './otherpages/AuthCallBack'
+
 
 function App() {
   const [theme, setTheme] = useState('light')
@@ -20,6 +22,27 @@ function App() {
     setTheme(theme==="light"?"dark":"light");
     setBanner(banner==="banner.png"?"bannerblack.png":"banner.png")
   }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Handle email confirmation
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === 'SIGNED_IN') {
+          console.log('User signed in:', session);
+          navigate('/profile');
+        }
+        
+        if (event === 'USER_UPDATED') {
+          console.log('User updated:', session);
+        }
+      }
+    );
+
+    return () => {
+      authListener?.subscription?.unsubscribe();
+    };
+  }, [navigate]);
 
   return (
     <Router>
@@ -30,6 +53,7 @@ function App() {
         <Route path="/signin" element={<SignIn/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/try" element={<Try/>}/>
+        <Route path="/auth/callback" element={<AuthCallback />} />
       </Routes>
     </Router>
   )
