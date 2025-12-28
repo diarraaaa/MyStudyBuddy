@@ -6,23 +6,23 @@ function Section1({banner}){
     return(
         <div className="section1">
             <div className="section1text"> 
-                <h2>Welcome to  <b style={{fontWeight:"bolder",fontSize:"50px"}}>MyStudyBuddy</b></h2>
-                <p>Our goal is to help you study more effectively.Your personal study assistant. Upload any material and watch it turn into clear summaries, flashcards, and study tools.</p>
+                <h2>Bienvenue sur <b style={{fontWeight:"bolder",fontSize:"50px"}}>MyStudyBuddy</b></h2>
+                <p>Notre objectif est de vous aider à étudier plus efficacement. Votre assistant d'études personnalisé. Téléchargez n'importe quel document et regardez-le se transformer en résumés clairs, fiches d'apprentissage et outils d'étude.</p>
             </div>
-            < img src={`./src/assets/${banner}`} alt="Banner" className="banner" />
+            < img src={`./src/assets/${banner}`} alt="Bannière" className="banner" />
         </div>
     )
 }
 function Section2(){
     return(
         <div className="section2">
-            <h1>Why use <b style={{fontWeight:"bolder",fontSize:"50px"}}>MyStudyBuddy?</b></h1>
+            <h1>Pourquoi utiliser <b style={{fontWeight:"bolder",fontSize:"50px"}}>MyStudyBuddy?</b></h1>
             <div className="features">
                 <ul className="featurelist">
-                    <li><h1><FaFileAlt /> Summarization</h1> <p>Automatically generate summaries from your notes.</p></li>
-                    <li><h1><FaClipboard /> Flashcards</h1> <p>Create flashcards from your notes for effective memorization.</p></li>
-                    <li><h1><FaQuestionCircle /> Quizzes</h1> <p>Test your knowledge with quizzes based on your study material.</p></li>
-                    <li><h1><FaYoutube /> Videos and articles </h1> <p>Personalized recommendations for videos and articles.</p></li>
+                    <li><h1><FaFileAlt /> Résumé automatique</h1> <p>Générez automatiquement des résumés à partir de vos notes.</p></li>
+                    <li><h1><FaClipboard /> Fiches d'apprentissage</h1> <p>Créez des fiches à partir de vos notes pour une mémorisation efficace.</p></li>
+                    <li><h1><FaQuestionCircle /> Quiz</h1> <p>Testez vos connaissances avec des quiz basés sur votre matériel d'étude.</p></li>
+                    <li><h1><FaYoutube /> Vidéos et articles</h1> <p>Recommandations personnalisées de vidéos et articles.</p></li>
                 </ul>
             </div>
         </div>
@@ -31,15 +31,15 @@ function Section2(){
 function Section3(){
     return(
         <div className="section3">
-            <h1>How it works</h1>
-            <p>MyStudyBuddy uses advanced algorithms to analyze your study materials and generate useful study aids.</p>
+            <h1>Comment ça marche</h1>
+            <p>MyStudyBuddy utilise des algorithmes avancés pour analyser vos matériels d'étude et générer des outils d'apprentissage utiles.</p>
             <div className="steps">
                 <ul>
                     <li>
-                    <h1>📤 Upload</h1><p>Upload your study materials.</p></li>
-                    <li><h1>🧠 Analyze</h1><p>Let MyStudyBuddy analyze the content.</p></li>
-                    <li><h1>📩 Receive</h1><p>Receive personalized study aids.</p></li>
-                    <li><h1>🔍 Explore</h1><p>Discover new study resources.</p></li>
+                    <h1>📤 Téléchargez</h1><p>Téléchargez vos matériels d'études.</p></li>
+                    <li><h1>🧠 Analysez</h1><p>Laissez MyStudyBuddy analyser le contenu.</p></li>
+                    <li><h1>📩 Recevez</h1><p>Recevez des outils d'étude personnalisés.</p></li>
+                    <li><h1>🔍 Explorez</h1><p>Découvrez de nouvelles ressources d'étude.</p></li>
                 </ul>
             </div>
         </div>
@@ -47,43 +47,43 @@ function Section3(){
 };
 function Section4(){
     return (
-        <div class="section4">
-            <div class="section4-badge">✨ Transform Your Learning Experience</div>
+        <div className="section4">
+            <div className="section4-badge">✨ Transformez Votre Expérience d'Apprentissage</div>
             
             <h2>
-                Ready to boost your
-                <span class="section4-highlight">study efficiency?</span>
+                Prêt à améliorer votre
+                <span className="section4-highlight">efficacité d'étude?</span>
             </h2>
             
             <p>
-                Upload your materials, generate AI-powered summaries, and start learning smarter today. 
-                Join thousands of students already crushing their goals.
+                Téléchargez vos matériels, générez des résumés alimentés par l'IA, et commencez à apprendre de manière plus intelligente dès aujourd'hui. 
+                Rejoignez des milliers d'étudiants qui réussissent déjà leurs objectifs.
             </p>
             
-            <div class="section4-buttons">
-                <a href="/signup" class="getstartedbtn">
-                    Get Started Free
-                    <span class="arrow-icon">→</span>
+            <div className="section4-buttons">
+                <a href="/signup" className="getstartedbtn">
+                    Commencer Gratuitement
+                    <span className="arrow-icon">→</span>
                 </a>
                 
-                <a href="/demo" class="section4-secondary-btn">
+                <a href="/demo" className="section4-secondary-btn">
                     <span>▶</span>
-                    Watch Demo
+                    Voir la Démo
                 </a>
             </div>
             
-            <div class="section4-trust">
-                <div class="trust-item">
-                    <svg class="check-icon" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            <div className="section4-trust">
+                <div className="trust-item">
+                    <svg className="check-icon" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>No credit card required</span>
+                    <span>Aucune carte bancaire requise</span>
                 </div>
-                <div class="trust-item">
-                    <svg class="check-icon" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                <div className="trust-item">
+                    <svg className="check-icon" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span>Free forever plan</span>
+                    <span>Plan gratuit à vie</span>
                 </div>
             </div>
         </div>
@@ -92,9 +92,8 @@ function Section4(){
 function Footer(){
     return(
         <div className="footer bg-gray-900 text-white py-4 text-center">
-            <p>© 2025 MyStudyBuddy. All rights reserved.</p>
+            <p>© 2025 MyStudyBuddy. Tous droits réservés.</p>
         </div>
-
     )
 }
 export {Section1,Section2,Section3,Section4,Footer};

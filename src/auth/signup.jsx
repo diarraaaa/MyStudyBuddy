@@ -24,25 +24,25 @@ function SignUp() {
         if (error) {
             setMessage(`Error: ${error.message}`);
         }else if (!('email_verified' in data.user.user_metadata)) {
-            setMessage('This email is already taken.Please sign in');
+            setMessage('Cette adresse email est déjà utilisée. Veuillez essayer de vous connecter.');
         }else {
-            setMessage('Signup successful! Please check your email to confirm your account.');
+            setMessage('Inscription réussie ! Veuillez vérifier votre email pour confirmer votre compte.');
         }
     };
     return (
         <div className="signup-container">
             <form className="signup-form" onSubmit={handleSignup} >
-                <h1>Sign Up</h1>
-                <label htmlFor="username">Username:</label>
+                <h1>S'inscrire</h1>
+                <label htmlFor="username">Nom d'utilisateur:</label>
                 <input type="text" id="username" name="username" required value={username} onChange={(e) => setUsername(e.target.value)} />
                 <label htmlFor="email">Email:</label>
                 <input type="email" id="email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Mot de passe:</label>
                 <input type="password" id="password" name="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Sign Up</button>
+                <button type="submit">S'inscrire</button>
                 {message && <p className="message">{message}</p>}
-                <p>Already have an account?
-                    <Link to="/signin" style={{ color: "#007bff" }}>Sign In</Link>
+                <p>Deja inscrit ?
+                    <Link to="/signin" style={{ color: "#007bff" }}>Se connecter</Link>
                 </p>
             </form>
         </div>

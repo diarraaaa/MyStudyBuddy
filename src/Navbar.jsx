@@ -28,21 +28,21 @@ function Navbar({theme,changetheme}) {
         <nav className="navbar">
             <button className="theme-emoji" onClick={changetheme}> { theme === "dark" ? "🌞" : "🌜"}</button>
             <ul>
-                <li> <Link to="/">Home</Link></li>
+                <li> <Link to="/">Accueil</Link></li>
                 {session ? (
                     <>
-                        <li> <Link to="/profile">Profile</Link></li>
+                        <li> <Link to="/profile">Profil</Link></li>
                         <button className="logout-button" onClick={async() =>{
                             await supabase.auth.signOut();
                             setSession(null);
                             navigate('/');
-                        }}>Logout</button>
+                        }}>Se déconnecter</button>
                     </>
                 ) : (
                     <>
-                        <li> <Link to="/signup">Get Started</Link></li>
-                        <li> <Link to="/try">Try Out</Link></li>
-                        <li> <Link to="">About</Link></li>
+                        <li> <Link to="/signup">Connexion</Link></li>
+                        <li> <Link to="/try">Essayer</Link></li>
+                        <li> <Link to="">A Propos</Link></li>
                         <li> <Link to="">Contact</Link></li>
                     </>)}
             </ul>

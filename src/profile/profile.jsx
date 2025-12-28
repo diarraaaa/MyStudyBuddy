@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
 import './profile.css';
@@ -39,16 +39,16 @@ function Profile() {
                 const selectedTask = document.querySelector('input[name="generation-type"]:checked')?.value;
                 
                 if (!texttouse.trim()) {
-                    setError('Please enter some text to generate materials.');
+                    setError('Veuillez entrer du texte pour générer du matériel.');
                     return;
                 }
                 
                 if (!selectedTask) {
-                    setError('Please select a generation type.');
+                    setError('Veuillez sélectionner un type de génération.');
                     return;
                 }
 
-                // Reset all states
+                // Réinitialiser tous les états
                 setSummary(null);
                 setReformulatedtext(null);
                 setExplanation(null);
@@ -57,64 +57,64 @@ function Profile() {
                 if (selectedTask === 'summary') {
                     const result = await summarizeText(texttouse);
                     setSummary(result);
-                    setTasktodo('Summary');
+                    setTasktodo('Résumé');
                 } else if (selectedTask === 'reformulate') {
                     const result = await reformulateText(texttouse);
                     setReformulatedtext(result);
-                    setTasktodo('Reformulate');
+                    setTasktodo('Reformulation');
                 } else if (selectedTask === 'explanation') {
                     const result = await explainText(texttouse);
                     setExplanation(result);
-                    setTasktodo('Explanation');
+                    setTasktodo('Explication');
                 } else if (selectedTask === 'articles') {
                     const result = await generateArticles(texttouse);
                     setArticles(result);
-                    setTasktodo('Article Recommendations');
+                    setTasktodo('Recommandations d\'articles');
                 }
             }
         } catch (error) { 
-            console.error("Error generating study material:", error);
-            setError('Error generating study material. Please try again.');
+            console.error("Erreur lors de la génération du matériel d'étude:", error);
+            setError('Erreur lors de la génération du matériel d\'étude. Veuillez réessayer.');
         } finally {
             setLoading(false);
-            console.log("Task completed");
+            console.log("Tâche terminée");
         }
     };
 
     return (
         <div className="profile-container">
             <div className="profile-header">
-                <h1>My Study Buddy</h1>
-                <h2>Hi {user ? user.user_metadata.username : 'Guest'}!</h2>
-                <p>Generate summaries, quizzes, and flashcards from your content</p>
+                <h1>Mon Assistant d'Étude</h1>
+                <h2>Bonjour {user ? user.user_metadata.username : 'Invité'}!</h2>
+                <p>Générez des résumés, des quiz et des fiches de votre contenu</p>
             </div>
 
             <div className="profile-content">
                 <section className="profile-section">
-                    <h2>Create Study Materials</h2>
+                    <h2>Créer un Support d'Étude</h2>
                     
                     <div className="input-type-selector">
                         <button 
                             className={`type-btn ${inputType === 'file' ? 'active' : ''}`}
                             onClick={() => setInputType('file')}
                         >
-                            📁 Upload File
+                            📁 Importer un fichier
                         </button>
                         <button 
                             className={`type-btn ${inputType === 'text' ? 'active' : ''}`}
                             onClick={() => setInputType('text')}
                         >
-                            ✏️ Paste Text
+                            ✏️ Coller du texte
                         </button>
                     </div>
 
                     <div className="upload-form">
                         <div className="form-group">
-                            <label htmlFor="content-title">Title:</label>
+                            <label htmlFor="content-title">Titre:</label>
                             <input 
                                 type="text" 
                                 id="content-title"
-                                placeholder="Enter a title for your study material"
+                                placeholder="Entrez un titre pour votre matériel d'étude"
                                 onChange={(e) => setTitle(e.target.value)}
                                 value={title}
                             />
@@ -122,35 +122,35 @@ function Profile() {
                         
                         {inputType === 'file' ? (
                             <div className="form-group">
-                                <label htmlFor="content-file">Upload File:</label>
+                                <label htmlFor="content-file">Importer un fichier:</label>
                                 <input 
                                     type="file" 
                                     id="content-file"
                                     accept=".pdf,.doc,.docx,.txt"
                                 />
-                                <small className="helper-text">Supported formats: PDF, DOC, DOCX, TXT</small>
+                                <small className="helper-text">Formats supportés: PDF, DOC, DOCX, TXT</small>
                             </div>
                         ) : (
                             <div className="form-group">
-                                <label htmlFor="content-text">Paste Your Text:</label>
+                                <label htmlFor="content-text">Collez votre texte:</label>
                                 <textarea 
                                     id="content-text"
                                     rows="8"
-                                    placeholder="Paste your course content, notes, or any text you want to study..."
+                                    placeholder="Collez votre contenu de cours, vos notes ou tout texte que vous souhaitez étudier..."
                                 />
                             </div>
                         )}
 
                         <div className="form-group">
-                            <label>Generate:</label>
+                            <label>Générer:</label>
                             <div className="checkbox-group">
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="explanation" />
-                                    <span>📖 Explanation</span>
+                                    <span>📖 Explication</span>
                                 </label>
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="summary" defaultChecked />
-                                    <span>📝 Summary</span>
+                                    <span>📝 Résumé</span>
                                 </label>
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="quiz" />
@@ -158,28 +158,28 @@ function Profile() {
                                 </label>
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="flashcards" />
-                                    <span>🎴 Flashcards</span>
+                                    <span>🎴 Fiches</span>
                                 </label>
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="video" />
-                                    <span>🎥 Video recommendations</span>
+                                    <span>🎥 Recommandations de vidéos</span>
                                 </label>
                                 <label className="checkbox-label">
                                     <input type="radio" name="generation-type" value="articles" />
-                                    <span>📄 Article Recommendations</span>
+                                    <span>📄 Recommandations d'articles</span>
                                 </label>
                             </div>
                         </div>
                         <button className="btn-primary" onClick={generatematerial}>
-                            Generate Study Materials
+                            Générer un Support d'Étude
                         </button>
                     </div>
                 </section>
                 <section className="profile-section">
-                    <h2>Generated Material: {tasktodo && <span>{tasktodo}</span>}</h2>
+                    <h2>Supports d'Étude Générés: {tasktodo && <span>{tasktodo}</span>}</h2>
                     <div className="materials-list">
                         {title && <h2>{title}</h2>}
-                        {loading && <p style={{ color: 'blue' }}>Generating material...</p>}    
+                        {loading && <p style={{ color: 'blue' }}>Génération du support en cours...</p>}    
                         {summary && <ReactMarkdown>{summary}</ReactMarkdown>}
                         {reformulatedtext && <ReactMarkdown>{reformulatedtext}</ReactMarkdown>}
                         {explanation && <ReactMarkdown>{explanation}</ReactMarkdown>}

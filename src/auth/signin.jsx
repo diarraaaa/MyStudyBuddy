@@ -28,15 +28,15 @@ function SignIn() {
     return (
         <div className="signin-container">
             <form className="signin-form" onSubmit={handleSignin} >
-                <h1>Sign In</h1>
+                <h1>Connexion</h1>
                 <label htmlFor="email">Email:</label>
                 <input type="email" id="email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-                <label htmlFor="password">Password:</label>
+                <label htmlFor="password">Mot de passe:</label>
                 <input type="password" id="password" name="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Sign In</button>
+                <button type="submit">Se connecter</button>
                 {message && <p className="message">{message}</p>}
-                <p>Don't have an account?{" "}
-                    <Link to="/signup" style={{ color: "#007bff" }}>Sign Up</Link>
+                <p>Pas encore de compte?{" "}
+                    <Link to="/signup" style={{ color: "#007bff" }}>S'inscrire</Link>
                 </p>
             </form>
         </div>
