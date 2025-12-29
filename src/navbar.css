@@ -20,9 +20,9 @@
   --navbar-shadow: rgba(0, 0, 0, 0.3);
 }
 
-/* Navbar container */
+/* Navbar container - STAYS AT TOP, doesn't follow scroll */
 .navbar {
-  position: fixed;
+  position: absolute; /* Changed from fixed to absolute */
   top: 0;
   left: 0;
   width: 100%;
@@ -37,6 +37,11 @@
   transition: all 0.3s ease;
 }
 
+/* Add padding to body to prevent content from hiding under navbar */
+body {
+  padding-top: 80px; /* Adjust this value based on your navbar height */
+}
+
 /* Menu list */
 .navbar ul {
   list-style: none;
@@ -47,8 +52,9 @@
   font-size: 16px;
   align-items: center;
 }
+
 .logout-button {
-  background-color:transparent;
+  background-color: transparent;
   color: var(--button-text);
   border: none;
   padding: 0.5rem 1.2rem;
@@ -58,6 +64,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 /* Menu items */
 .navbar ul li, .logout-button {
   color: var(--navbar-text);
@@ -141,6 +148,10 @@
     padding: 0.5rem 1.2rem;
     font-size: 13px;
   }
+  
+  body {
+    padding-top: 90px;
+  }
 }
 
 /* Responsive for small screens */
@@ -158,6 +169,10 @@
 
   .navbar .theme-emoji {
     order: -1;
+  }
+  
+  body {
+    padding-top: 120px; /* More space for stacked navbar */
   }
 }
 
@@ -179,7 +194,12 @@
     padding: 0.5rem 1rem;
     font-size: 12px;
   }
+  
+  body {
+    padding-top: 140px; /* Even more space for wrapped items */
+  }
 }
+
 .theme-emoji {
   display: inline-block;
   transition: transform 0.5s ease, opacity 0.5s ease;
@@ -195,6 +215,7 @@
   transform: rotate(360deg);
   opacity: 0.8;
 }
+
 nav a {
   color: inherit;
   text-decoration: none;

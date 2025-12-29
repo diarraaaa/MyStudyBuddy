@@ -567,3 +567,119 @@ pre code {
   padding: 0;
   font-size: 14px;
 }
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+  }
+
+  .profile-header {
+    padding: 2rem 1.5rem;
+  }
+
+  .profile-header h1 {
+    font-size: 2rem;
+  }
+
+  .profile-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .profile-header p {
+    font-size: 1rem;
+  }
+
+  .profile-section {
+    padding: 1.5rem;
+  }
+
+  .profile-section h2 {
+    font-size: 1.4rem;
+  }
+
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+
+  .input-type-selector {
+    flex-direction: column;
+  }
+
+  .type-btn {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  .materials-list {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 0.75rem;
+  }
+
+  .profile-header {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  .profile-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .profile-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .profile-header::before {
+    font-size: 100px;
+    right: -20px;
+    top: -20px;
+  }
+
+  .profile-header::after {
+    font-size: 70px;
+    left: -10px;
+    bottom: -10px;
+  }
+
+  .profile-section {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .profile-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .checkbox-label {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+  }
+
+  .helper-text {
+    font-size: 0.8rem;
+  }
+
+  .materials-list h1 { font-size: 1.5rem; }
+  .materials-list h2 { font-size: 1.25rem; }
+  .materials-list h3 { font-size: 1.1rem; }
+}
