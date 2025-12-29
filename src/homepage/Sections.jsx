@@ -9,7 +9,7 @@ function Section1({banner}){
                 <h2>Bienvenue sur <b style={{fontWeight:"bolder",fontSize:"50px"}}>MyStudyBuddy</b></h2>
                 <p>Notre objectif est de vous aider à étudier plus efficacement. Votre assistant d'études personnalisé. Téléchargez n'importe quel document et regardez-le se transformer en résumés clairs, fiches d'apprentissage et outils d'étude.</p>
             </div>
-            < img src={`./src/assets/${banner}`} alt="Bannière" className="banner" />
+            < img src={`/assets/${banner}`} alt="Bannière" className="banner" />
         </div>
     )
 }

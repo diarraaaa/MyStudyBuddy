@@ -64,7 +64,7 @@ body {
   max-width: 1300px;
   margin: 0 auto;
   padding: 2rem;
-}
+  }
 
 /* Fun Educational Header */
 .profile-header {
@@ -104,6 +104,7 @@ body {
   margin-bottom: 0.5rem;
   position: relative;
   z-index: 1;
+
 }
 
 .profile-header h2 {
@@ -503,6 +504,7 @@ body {
 
   .profile-header h1 {
     font-size: 2rem;
+    padding-top: 1rem;
   }
 
   .profile-section {
@@ -579,6 +581,7 @@ pre code {
 
   .profile-header h1 {
     font-size: 2rem;
+    padding-top: 1rem;
   }
 
   .profile-header h2 {
@@ -639,6 +642,7 @@ pre code {
 
   .profile-header h1 {
     font-size: 1.75rem;
+    padding-top: 1rem;
   }
 
   .profile-header h2 {
