@@ -5,13 +5,13 @@
   --bg-color: #ffffff;
 }
 [data-theme="dark"] {
-  --bg-color: black;
-  --text-color: #f0f0f0;
-  --highlight-color: #ff75c1;
+  --bg-color: #1a1a1a;
+  --text-color: #ecf0f1;
+  --highlight-color: #5dade2;
   --card-bg: #2a2a2a;
-  --card-shadow: rgba(0, 0, 0, 0.5);
-  --button-bg: #ff75c1;
-  --button-hover-bg: #813f92;
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --button-bg: #5dade2;
+  --button-hover-bg: #3498db;
 }
 
 #root{

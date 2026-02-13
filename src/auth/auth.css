@@ -1,28 +1,48 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes inputFocus {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(52, 152, 219, 0);
+  }
+}
+
 :root {
   /* Light theme colors */
   --bg-color: #ffffff;
-  --text-color: #2d3748;
-  --highlight-color: #14247c;
+  --text-color: #2c3e50;
+  --highlight-color: #3498db;
   --card-bg: #ffffff;
-  --card-shadow: rgba(11, 19, 92, 0.281);
-  --input-border: #e2e8f0;
-  --input-focus: #183e91;
-  --button-bg: #1e4496;
-  --button-hover-bg: #1a18be;
-  --error-color: #f56565;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --input-border: #bdc3c7;
+  --input-focus: #3498db;
+  --button-bg: #3498db;
+  --button-hover-bg: #2980b9;
+  --error-color: #e74c3c;
 }
 
 /* Dark theme overrides */
 [data-theme="dark"] {
-  --bg-color: #000000;
-  --text-color: #e2e8f0;
-  --highlight-color: #1a1de9;
-  --card-bg: #1a1a1a;
-  --card-shadow: rgba(21, 47, 119, 0.788);
-  --input-border: #2d3748;
-  --input-focus: #122694;
-  --button-bg: #252685;
-  --button-hover-bg: #191b8f;
+  --bg-color: #1a1a1a;
+  --text-color: #ecf0f1;
+  --highlight-color: #5dade2;
+  --card-bg: #2a2a2a;
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --input-border: #34495e;
+  --input-focus: #5dade2;
+  --button-bg: #3498db;
+  --button-hover-bg: #2980b9;
 }
 
 /* Container for centering - works for both signin and signup */
@@ -42,13 +62,15 @@
   background-color: var(--card-bg);
   color: var(--text-color);
   box-shadow: 0 10px 40px var(--card-shadow);
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 3rem 2.5rem;
   width: 100%;
   max-width: 420px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+  border: 1px solid rgba(52, 152, 219, 0.1);
 }
 
 .signin-form:hover,
@@ -98,7 +120,7 @@
   width: 100%;
   padding: 0.875rem 1rem;
   border: 2px solid var(--input-border);
-  border-radius: 10px;
+  border-radius: 12px;
   outline: none;
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -111,8 +133,9 @@
 .signup-form input:focus {
   border-color: var(--input-focus);
   background-color: var(--card-bg);
-  box-shadow: 0 0 0 3px rgba(221, 117, 247, 0.1);
-  transform: translateY(-1px);
+  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15);
+  transform: translateY(-2px);
+  animation: inputFocus 0.6s ease-out;
 }
 
 .signin-form input::placeholder,
@@ -127,7 +150,7 @@
   background: linear-gradient(135deg, var(--button-bg), var(--button-hover-bg));
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1rem 1.5rem;
   font-weight: 700;
   font-size: 1rem;
@@ -135,19 +158,19 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(20, 46, 85, 0.3);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
 }
 
 .signin-form button:hover,
 .signup-form button:hover {
   background: linear-gradient(135deg, var(--button-hover-bg), var(--button-bg));
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(27, 18, 104, 0.342);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
 }
 
 .signin-form button:active,
 .signup-form button:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
 }
 
 /* Link section at bottom */
@@ -184,6 +207,69 @@
 .signin-form a:hover::after,
 .signup-form a:hover::after {
   transform: scaleX(1);
+}
+
+/* Divider with text */
+.divider-container {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 15px;
+}
+
+.divider {
+  flex: 1;
+  height: 1px;
+  border: none;
+  background-color: var(--input-border);
+}
+
+.divider-text {
+  color: var(--text-medium);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Google Auth Button */
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background-color: #ffffff;
+  border: 2px solid var(--input-border);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.google-button:hover {
+  border-color: #3498db;
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.google-button:active {
+  transform: translateY(0);
+}
+
+[data-theme="dark"] .google-button {
+  background-color: #2a2a2a;
+  border-color: #3a3a3a;
+  color: #ecf0f1;
+}
+
+[data-theme="dark"] .google-button:hover {
+  background-color: #333333;
+  border-color: #5dade2;
 }
 
 /* Responsive adjustments */

@@ -8,12 +8,12 @@
   
   /* Light theme variables */
   --bg-color: #ffffff;
-  --text-color: #333333;
-  --highlight-color: #dd75f7;
+  --text-color: #2c3e50;
+  --highlight-color: #3498db;
   --card-bg: #ffffff;
-  --card-shadow: rgba(255, 148, 255, 0.911);
-  --button-bg: #dd75f7;
-  --button-hover-bg: #813f92;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --button-bg: #3498db;
+  --button-hover-bg: #2980b9;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,13 +22,13 @@
 }
 
 [data-theme="dark"] {
-  --bg-color: #000000;
-  --text-color: #f0f0f0;
-  --highlight-color: #ff75c1;
+  --bg-color: #1a1a1a;
+  --text-color: #ecf0f1;
+  --highlight-color: #5dade2;
   --card-bg: #2a2a2a;
-  --card-shadow: rgba(0, 0, 0, 0.5);
-  --button-bg: #ff75c1;
-  --button-hover-bg: #813f92;
+  --card-shadow: rgba(0, 0, 0, 0.3);
+  --button-bg: #5dade2;
+  --button-hover-bg: #3498db;
 }
 
 body {

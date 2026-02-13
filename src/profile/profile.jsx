@@ -85,7 +85,7 @@ function Profile() {
         <div className="profile-container">
             <div className="profile-header">
                 <h1>Mon Assistant d'Étude</h1>
-                <h2>Bonjour {user ? user.user_metadata.username : 'Invité'}!</h2>
+                <h2>Bonjour {user ? (user.user_metadata?.username || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Invité') : 'Invité'}!</h2>
                 <p>Générez des résumés, des quiz et des fiches de votre contenu</p>
             </div>
 

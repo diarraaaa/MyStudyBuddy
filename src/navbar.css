@@ -1,22 +1,43 @@
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+  }
+}
+
 /* Default (light) theme */
 :root {
-  --navbar-bg: linear-gradient(135deg, #f5e6ff 0%, #ffffff 100%);
-  --navbar-text: #2c2c2c;
-  --navbar-hover: #6f1985;
-  --button-bg: linear-gradient(135deg, #9d4edd 0%, #7b2cbf 100%);
+  --navbar-bg: linear-gradient(135deg, #ffffff 0%, #ecf0f1 100%);
+  --navbar-text: #2c3e50;
+  --navbar-hover: #3498db;
+  --button-bg: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
   --button-text: #ffffff;
-  --button-hover-bg: linear-gradient(135deg, #7b2cbf 0%, #5a189a 100%);
+  --button-hover-bg: linear-gradient(135deg, #2980b9 0%, #1f5a8a 100%);
   --navbar-shadow: rgba(0, 0, 0, 0.08);
 }
 
 /* Dark theme */
 :root[data-theme="dark"] {
-  --navbar-bg: linear-gradient(135deg, #1a1a1a 0%, #2d1b3d 100%);
-  --navbar-text: #f0f0f0;
-  --navbar-hover: #e0aaff;
-  --button-bg: linear-gradient(135deg, #7b2cbf 0%, #5a189a 100%);
+  --navbar-bg: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  --navbar-text: #ecf0f1;
+  --navbar-hover: #5dade2;
+  --button-bg: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
   --button-text: #ffffff;
-  --button-hover-bg: linear-gradient(135deg, #9d4edd 0%, #7b2cbf 100%);
+  --button-hover-bg: linear-gradient(135deg, #5dade2 0%, #3498db 100%);
   --navbar-shadow: rgba(0, 0, 0, 0.3);
 }
 
@@ -35,6 +56,8 @@
   box-shadow: 0 2px 15px var(--navbar-shadow);
   box-sizing: border-box;
   transition: all 0.3s ease;
+  animation: slideDown 0.6s ease-out;
+  border-radius: 0 0 12px 12px;
 }
 
 /* Add padding to body to prevent content from hiding under navbar */
@@ -108,18 +131,18 @@ body {
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(123, 44, 191, 0.25);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.25);
   white-space: nowrap;
 }
 
 .navbar .theme-emoji:hover {
   background: var(--button-hover-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(123, 44, 191, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
 }
 
 .navbar .theme-emoji:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
 }
 
 /* Responsive for medium screens */
